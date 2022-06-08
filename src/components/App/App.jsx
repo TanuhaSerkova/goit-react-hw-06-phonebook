@@ -14,13 +14,14 @@ const initialContacts = [
 
 export const App = () => {
     const [contacts, setContacts] = useState(
-        () => JSON.parse(localStorage.getItem('contacts')) ?? initialContacts);
+        () => JSON.parse(localStorage.getItem('contacts')) ?? initialContacts
+    );
     
     const [filter, setFilter] = useState('');
     
     // запись контакта в localStorage
     useEffect(() => {
-        localStorage.setItem('contacts', JSON.stringify(contacts));
+        localStorage.setItem('Contacts', JSON.stringify(contacts));
     }, [contacts]);
 
     // добавляет контакт в список
