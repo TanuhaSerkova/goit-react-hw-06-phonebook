@@ -14,7 +14,7 @@ const initialContacts = [
 
 export const App = () => {
     const [contacts, setContacts] = useState(
-        () => JSON.parse(localStorage.getItem('contacts')) ?? initialContacts
+        () => JSON.parse(localStorage.getItem('Сontacts')) ?? initialContacts
     );
     
     const [filter, setFilter] = useState('');
