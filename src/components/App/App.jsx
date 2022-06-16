@@ -1,29 +1,17 @@
-import { useState, useEffect } from 'react';
-import { nanoid } from 'nanoid';
+import { useEffect } from 'react';
 import { Filter } from 'components/Filter/Filter';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Container, Section, TitleH1, TitleH2 } from './App.styled';
 
-const initialContacts = [
-    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-    { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-    { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-];
-
-export const App = () => {
-    const [contacts, setContacts] = useState(
-        () => JSON.parse(localStorage.getItem('Сontacts')) ?? initialContacts
-    );
-    
-    const [filter, setFilter] = useState('');
+export const App = ({ contacts }) => {
     
     // запись контакта в localStorage
     useEffect(() => {
         localStorage.setItem('Contacts', JSON.stringify(contacts));
     }, [contacts]);
 
+    /*
     // добавляет контакт в список
     const addContact = ({ name, number }) => {
         const findName = contacts.find(
@@ -65,21 +53,18 @@ export const App = () => {
         );
     };
 
-    const visibleContacts = filterContacts();
+    const visibleContacts = filterContacts();*/
 
     return (
         <Container>
             <Section title="Phonebook">
                 <TitleH1>Phonebook</TitleH1>
-                <ContactForm onSubmit={addContact} />
+                <ContactForm/>
             </Section>
             <Section title="Contacts">
                 <TitleH2>Contacts</TitleH2>
-                <Filter value={filter} onChange={handleFilter} />
-                <ContactList
-                    contacts={visibleContacts}
-                    onDeleteContact={deleteContact}
-                />
+                <Filter/>
+                <ContactList/>
             </Section>
         </Container>
     );

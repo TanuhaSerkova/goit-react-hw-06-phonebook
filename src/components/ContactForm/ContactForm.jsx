@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addContact } from '../../redux/contacts/contacts-actions';
+import { getContacts } from '../../redux/contacts/contacts-selectors';
+import { toast } from 'react-toastify';
 import { Form, Label, Input, Button } from './ContactForm.styled';
 
-export function ContactForm({ onSubmit }) {
+export function ContactForm() {
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
+    const dispatch = useDispatch();
+    const contacts = useSelector(getContacts);
 
+    // Следит за инпутом и пишет в локальный стейт его значение
     const handleChange = e => {
         const { name, value } = e.currentTarget;
 
@@ -23,12 +29,44 @@ export function ContactForm({ onSubmit }) {
         }
     };
 
+     // Проверка на дубликат по имени
+    const checkRepeatName = name => {
+        return contacts.find(
+        contact => contact.name.toLowerCase() === name.toLowerCase(),
+        );
+    };
+
+    // Проверка на дубликат по номеру
+    const checkRepeatNumber = number => {
+        return contacts.find(contact => contact.number === number);
+    };
+
+    // Отправка данных после проверки в экшн
+    const checkEmptyQuery = (name, number) => {
+        return name.trim() === '' || number.trim() === '';
+    };
+
+    const checkValidNumber = number => {
+        return !/\d{3}[-]\d{2}[-]\d{2}/g.test(number);
+    };
+
     const handleSubmit = e => {
         e.preventDefault();
-        onSubmit({ name, number });
+        if (checkRepeatName(name)) {
+        toast(`🤔 ${name} is already in the phonebook.`);
+        } else if (checkRepeatNumber(number)) {
+        toast(`🤔 ${number} is already in the phonebook.`);
+        } else if (checkEmptyQuery(name, number)) {
+        toast.info("😱 Enter the contact's name and number phone!");
+        } else if (checkValidNumber(number)) {
+        toast.error('💩 Enter the correct number phone!');
+        } else {
+        dispatch(addContact(name, number));
+        }
         reset();
     };
 
+    // Сброс полей формы (после отправки)
     const reset = () => {
         setName('');
         setNumber('');
@@ -66,7 +104,3 @@ export function ContactForm({ onSubmit }) {
         </Form>
     );
 }
-
-ContactForm.propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-};
