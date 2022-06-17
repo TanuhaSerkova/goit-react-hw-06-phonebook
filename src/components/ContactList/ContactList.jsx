@@ -7,11 +7,13 @@ import {
 import { ContactItem } from 'components/ContactItem/ContactItem';
 import { List } from './ContactList.styled';
 
+// Принимает все контакты и пробрасывает дальше метод для удаления контакта
 export const ContactList = () => {
     const dispatch = useDispatch();
     const contacts = useSelector(getContacts);
     const filter = useSelector(getFilter);
 
+     // Фильтрует и возвращает результат фильтра
     const filteredContacts = (contacts, filter) => {
         return contacts.filter(contact =>
         contact.name.toLowerCase().includes(filter.toLowerCase()),

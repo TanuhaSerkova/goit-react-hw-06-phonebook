@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { Item, Button } from './ContactItem.styled';
 
+// Принимает один контакт и метод для удаления контакта
 export const ContactItem = ({ id, name, number, onClick }) => {
     return (
         <Item key={id}>

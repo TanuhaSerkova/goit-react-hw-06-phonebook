@@ -3,6 +3,7 @@ import { filterContact } from '../../redux/contacts/contacts-actions';
 import { getFilter } from '../../redux/contacts/contacts-selectors';
 import { Label, Input } from './Filter.styled';
 
+// Принимает значение с поля фильтра и метод пишущий в стейт
 export function Filter() {
     const dispatch = useDispatch();
     const filter = useSelector(getFilter);
