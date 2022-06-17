@@ -1,17 +1,16 @@
-import { useEffect } from 'react';
+//import { useEffect } from 'react';
 import { Filter } from 'components/Filter/Filter';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Container, Section, TitleH1, TitleH2 } from './App.styled';
 
-export const App = ({ contacts }) => {
+export const App = () => {
     
-    // запись контакта в localStorage
+    /*// запись контакта в localStorage
     useEffect(() => {
         localStorage.setItem('Contacts', JSON.stringify(contacts));
     }, [contacts]);
 
-    /*
     // добавляет контакт в список
     const addContact = ({ name, number }) => {
         const findName = contacts.find(
