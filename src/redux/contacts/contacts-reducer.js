@@ -8,9 +8,7 @@ const contactsReducer = createReducer(
     // Создание редюсера для массива items в контактах (добавление контакта и удаление)
     [addContact]: (state, { payload }) => [...state, payload],
     [deleteContact]: (state, { payload }) =>
-      state.filter(contact => {
-        return contact.id !== payload;
-      }),
+      state.filter(({ id }) => id !== payload),
   }
 );
 
