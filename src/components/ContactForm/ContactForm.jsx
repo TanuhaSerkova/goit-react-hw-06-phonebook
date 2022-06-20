@@ -47,7 +47,7 @@ export function ContactForm() {
     };
 
     /*const checkValidNumber = number => {
-        return !/\d{3}[-]\d{2}[-]\d{2}/g.test(number);
+        return \+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}.test(number);
     };*/
 
     const handleSubmit = e => {
@@ -58,8 +58,8 @@ export function ContactForm() {
         toast(`🤔 ${number} is already in the phonebook.`);
         } else if (checkEmptyQuery(name, number)) {
         toast.info("😱 Enter the contact's name and number phone!");
-        /*} else if (checkValidNumber(number)) {
-        toast.error('💩 Enter the correct number phone!');*/
+        } else if (number) {
+        toast.error('💩 Enter the correct number phone!');
         } else {
         dispatch(addContact(name, number));
         }
