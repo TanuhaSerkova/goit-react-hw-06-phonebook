@@ -58,8 +58,8 @@ export function ContactForm() {
         toast(`🤔 ${number} is already in the phonebook.`);
         } else if (checkEmptyQuery(name, number)) {
         toast.info("😱 Enter the contact's name and number phone!");
-        } else if (number) {
-        toast.error('💩 Enter the correct number phone!');
+        /*} else if (checkValidNumber(number)) {
+        toast.error('💩 Enter the correct number phone!');*/
         } else {
         dispatch(addContact(name, number));
         }
