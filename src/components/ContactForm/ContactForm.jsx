@@ -47,7 +47,7 @@ export function ContactForm() {
     };
 
     /*const checkValidNumber = number => {
-        return \+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}.test(number);
+        return !/\d{3}[-]\d{2}[-]\d{2}/g.test(number);
     };*/
 
     const handleSubmit = e => {
